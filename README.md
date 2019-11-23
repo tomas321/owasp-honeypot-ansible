@@ -5,7 +5,9 @@ Provide deployment for [OWASP python Honeypot](https://www.owasp.org/index.php/O
 ## Structure
 
 `docker` - Ansible role to install Docker.
+
 `mongodb` - Ansible role to install mongodb.
+
 `owasp-honeypot` - Ansible role followinf OWASP honeypot [installation guide](https://github.com/zdresearch/OWASP-Honeypot/wiki/Installation)
 
 ## Example Ansible playbook
