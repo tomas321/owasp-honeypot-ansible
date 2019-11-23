@@ -1,0 +1,32 @@
+---
+# tasks file for mongodb
+
+- name: add mongoDB GPG key
+  become: true
+  apt_key:
+    url: "https://www.mongodb.org/static/pgp/server-4.2.asc"
+
+- name: add mongoDB repo to apt sources
+  become: true
+  apt_repository:
+    repo: "deb [ arch=amd64 ] https://repo.mongodb.org/apt/ubuntu bionic/mongodb-org/4.2 multiverse"
+  register: apt_repository
+
+- name: update apt cache
+  become: true
+  when: apt_repository.changed
+  apt:
+    update_cache: true
+
+- name: install mongoDB
+  become: true
+  apt:
+    name: mongodb-org
+    state: present
+
+- name: exnsure mongoDB is started and enabled
+  become: true
+  systemd:
+    name: mongod
+    state: started
+    enabled: true

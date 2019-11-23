@@ -1,0 +1,10 @@
+---
+
+owasp_honeypot_dependencies:
+  - python3-pip
+  - libpcap-dev
+  - libnet-dev
+  - tshark
+  - net-tools
+
+owasp_honeypot_repo_url: "https://github.com/zdresearch/OWASP-Honeypot"

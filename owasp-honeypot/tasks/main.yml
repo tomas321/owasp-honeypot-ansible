@@ -1,0 +1,27 @@
+---
+
+- name: install python3-pip
+  become: true
+  package:
+    name: "{{ item }}"
+    state: present
+  loop: "{{ owasp_honeypot_dependencies }}"
+
+- name: clone OWASP-honeypot repository
+  git:
+    force: true
+    repo: "{{ owasp_honeypot_repo_url }}"
+    dest: "{{ owasp_honeypot_repo_dest }}"
+
+- name: pip install setuptools
+  become: true
+  pip:
+    name: "setuptools"
+    executable: pip3
+
+- name: install repo dependencies
+  become: true
+  pip:
+    chdir: "{{ owasp_honeypot_repo_dest }}"
+    requirements: "requirements.txt"
+    executable: pip3
